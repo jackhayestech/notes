@@ -4,7 +4,7 @@ import {Tags} from './editorpanelelements/Tags'
 import {TitleInput} from './editorpanelelements/TitleInput'
 import {NoteEditor} from './editorpanelelements/NoteEditor'
 import update from 'immutability-helper';
-import {convertToRaw, RichUtils} from 'draft-js';
+import {convertToRaw, RichUtils, EditorState} from 'draft-js';
 
 export class EditorPanel extends Component
 {
@@ -23,7 +23,10 @@ export class EditorPanel extends Component
 
     saveNote()
     {
+
         var contentState = this.state.editorState.getCurrentContent();
+
+        console.log(JSON.stringify(convertToRaw(contentState)));
 
         var note = {
             id : this.props.selectedNote.id,

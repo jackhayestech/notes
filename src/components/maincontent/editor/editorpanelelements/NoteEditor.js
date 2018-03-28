@@ -7,7 +7,7 @@ export class NoteEditor extends Component
     constructor(props)
     {
         super(props)
-
+        var test = '{"blocks":[{"key":"3rbum","text":"t","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}';
         var state;
 
         if (this.props.content === "")
@@ -19,6 +19,8 @@ export class NoteEditor extends Component
             const DBEditorState = convertFromRaw(JSON.parse(this.props.content));
             state = EditorState.createWithContent(DBEditorState);
         }
+
+        this.props.updateNoteContent(state);
 
         this.state = {
             editorState: state,

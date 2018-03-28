@@ -1,16 +1,15 @@
 {
-  "name": "notes",
+  "name": "notesweb",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://notes.jackhayes.tech",
   "dependencies": {
-    "draft-js": "^0.10.3",
-    "immutability-helper": "^2.4.0",
-    "react": "^16.0.0",
-    "react-color": "^2.13.8",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14",
-    "react-tag-input": "^4.7.2"
+    "draft-js": "^0.10.5",
+    "immutability-helper": "^2.6.6",
+    "react": "^16.2.0",
+    "react-color": "^2.14.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "react-tag-input": "^4.9.1"
   },
   "scripts": {
     "start": "react-scripts start",

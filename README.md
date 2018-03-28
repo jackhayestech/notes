@@ -1,1 +1,1 @@
-A web based note taking application
+A note taking application.

@@ -13,6 +13,7 @@ class App extends Component
         super();
 
         this.state = {
+            sessionID : document.body.dataset.sessionId,
             newNoteID : 1,
             notes : [
                 // {id : 1, data:{

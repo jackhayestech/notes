@@ -3,23 +3,19 @@
 <head>
     @include('includes.writerhead')
 </head>
-<body>
+<body data-session-id='{{ Session::getId() }}'>
 <div class="container-fluid body-content">
-
     <header id="header-container" class="row">
         @include('includes.header')
     </header>
 
     <div id="main-container" class="row">
-
-            @yield('content')
-
+        @yield('content')
     </div>
 
     <footer id="footer-container" class="row">
         @include('includes.footer')
     </footer>
-
 </div>
 </body>
 </html>

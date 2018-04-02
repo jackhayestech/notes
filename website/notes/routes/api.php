@@ -17,7 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('notes/getmeta/{id}','NoteWriterController@getNotesMeta');
-Route::get('notes/getcontent/{id}','NoteWriterController@getNoteContent');
+Route::get('notes/getmeta/{user_id}','NoteWriterController@getNotesMeta');
+Route::get('notes/getcontent/{note_id}','NoteWriterController@getNoteContent');
 
-Route::post('notes/updatenote/{id}','NoteWriterController@updateNote');
+Route::post('notes/createnote/{user_id}','NoteWriterController@createNote');
+Route::post('notes/updatenote/{note_id}','NoteWriterController@updateNote');
+Route::post('notes/deletenote/{note_id}','NoteWriterController@deleteNote');

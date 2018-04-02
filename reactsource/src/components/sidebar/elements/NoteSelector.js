@@ -21,7 +21,7 @@ export class NoteSelector extends Component
 
     toggleDeleteNoteDisplay(e)
     {
-        this.setState({displayConfirmDelete : !this.state.displayConfirmDelete})
+       this.setState({displayConfirmDelete : !this.state.displayConfirmDelete})
     }
 
     confirmDivStopProp(e)
@@ -138,6 +138,7 @@ export class NoteSelector extends Component
         {
             return (
                 <div
+                key={this.props.note.id} 
                 style={styles.divNoteSelector}
                 onMouseDown={this.select}>
                     <p style={styles.pNoteTitle}>

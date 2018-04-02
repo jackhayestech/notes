@@ -14,7 +14,6 @@ class App extends Component
 
         this.state = {
             sessionID : document.body.dataset.sessionId,
-            newNoteID : 1,
             notes : [
             ],
             selectedNote : {
@@ -30,7 +29,7 @@ class App extends Component
     componentDidMount()
     {
         //Gets note data
-        fetch("http://localhost/api/notes/getmeta/" + 'ruIKlqKkkz9B1VPHukdK0yyM9sRSGPUBXVs2a8wB')
+        fetch("http://localhost/api/notes/getmeta/" + 'QqxBhMC8e2x9JLFssQ5v3k7i6jFViHzo8S9sOfob')
         .then(res => res.json())
         .then(
             (result) => {
@@ -60,9 +59,6 @@ class App extends Component
 
             newNotes.push(note);
         });
-
-        // Updates the new note id number
-        this.setState({newNoteID : note.id + 1})
 
         this.setState({notes : newNotes});
     }
@@ -127,9 +123,11 @@ class App extends Component
             }
         });
 
-        this.setState({notes : updatedNotes});
+        fetch("http://localhost/api/notes/deletenote/" + noteID, {
+            method: 'POST'
+        });
 
-        this.refs.sidebar.forceUpdate();
+        this.setState({notes : updatedNotes});
 
         this.setState({
             selectedNote : {
@@ -138,23 +136,37 @@ class App extends Component
                 tags : []
             }
         });
+
+        this.refs.sidebar.forceUpdate();
     }
 
     newNote()
     {
-        var newNote = {
-            id : this.state.newNoteID,
-            title : "New Note Title",
-            tags : []
-        };
+        fetch("http://localhost/api/notes/createnote/" + 'QqxBhMC8e2x9JLFssQ5v3k7i6jFViHzo8S9sOfob', {
+            method: 'POST'
+        })
+        .then(res => res.json())
+        .then(
+            (result) => {
+                var note_id = result;
 
-        var newNotes = update(this.state.notes,{$push: [newNote]});
-        this.setState({notes : newNotes});
-
-        setTimeout(function() {
-            this.setSelectedNote(this.state.newNoteID);
-            this.setState({newNoteID : this.state.newNoteID + 1});
-        }.bind(this), 10);
+                var newNote = {
+                    id : note_id,
+                    title : "New Note Title",
+                    tags : []
+                };
+        
+                var newNotes = update(this.state.notes,{$push: [newNote]});
+                this.setState({notes : newNotes});
+        
+                setTimeout(function() {
+                    this.setSelectedNote(note_id);
+                }.bind(this), 10);
+            },
+            (error) => {
+                console.log("Error somthing went wrong creating the note from laravel");
+            }
+        );
     }
 
     addTag(tag)

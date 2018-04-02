@@ -121,7 +121,7 @@ export class NoteSelector extends Component
                 style={styles.divNoteSelector}
                 onMouseDown={this.select}>
                     <p style={styles.pNoteTitle}>
-                        {this.props.note.data.title}
+                        {this.props.note.title}
                     </p>
                     <div
                     style={styles.divDeleteNote}
@@ -137,11 +137,11 @@ export class NoteSelector extends Component
         else
         {
             return (
-                <div key={this.props.note.id}
+                <div
                 style={styles.divNoteSelector}
                 onMouseDown={this.select}>
                     <p style={styles.pNoteTitle}>
-                        {this.props.note.data.title}
+                        {this.props.note.title}
                     </p>
                     <div style={styles.divDeleteNote}
                     onMouseDown={this.toggleDeleteNoteDisplay.bind(this)}>
@@ -155,7 +155,7 @@ export class NoteSelector extends Component
                         <div style={styles.divConfirmDelete}
                         onMouseDown={this.confirmDivStopProp}>
                             Are you sure you want to delete: <br/>
-                            {this.props.note.data.title}?<br/>
+                            {this.props.note.title}?<br/>
                             <span key={'btn1'}
                             style={styles.spanTextButton}
                             onMouseDown={this.deleteNote.bind(this)}>

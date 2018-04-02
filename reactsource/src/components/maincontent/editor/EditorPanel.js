@@ -13,8 +13,8 @@ export class EditorPanel extends Component
         super(props);
 
         this.state = {
-            editorState: this.props.selectedNote.data.content,
-            noteTitle: this.props.selectedNote.data.title,
+            editorState: this.props.selectedNote.content,
+            noteTitle: this.props.selectedNote.title,
             noteTags : this.props.selectedNote.tags
         };
 
@@ -26,14 +26,10 @@ export class EditorPanel extends Component
 
         var contentState = this.state.editorState.getCurrentContent();
 
-        console.log(JSON.stringify(convertToRaw(contentState)));
-
         var note = {
             id : this.props.selectedNote.id,
-            data : {
-                title : this.state.noteTitle,
-                content:  JSON.stringify(convertToRaw(contentState))
-            },
+            title : this.state.noteTitle,
+            content:  JSON.stringify(convertToRaw(contentState)),
             tags : this.state.noteTags,
         };
 

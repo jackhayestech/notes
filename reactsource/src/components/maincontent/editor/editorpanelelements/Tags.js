@@ -10,13 +10,25 @@ export class Tags extends Component
         var tagSuggestions = [];
 
         this.state = {
-            tags: this.props.noteTags,
+            tags: this.loadTags(this.props.noteTags),
             suggestions: this.props.tags,
         };
 
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
+    }
+
+    loadTags(tagsdata)
+    {
+        var tags = []
+        tagsdata.forEach(tag => {
+            tags.push({
+                id: tags.length,
+                text: tag
+            });
+        });
+        return tags;
     }
 
     handleDelete(i) {

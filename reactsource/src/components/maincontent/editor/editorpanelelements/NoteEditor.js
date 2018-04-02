@@ -16,14 +16,15 @@ export class NoteEditor extends Component
         }
         else
         {
-            const DBEditorState = convertFromRaw(JSON.parse(this.props.content));
+            var data = this.props.content;
+            const DBEditorState = convertFromRaw(JSON.parse(data));
             state = EditorState.createWithContent(DBEditorState);
         }
 
         this.props.updateNoteContent(state);
 
         this.state = {
-            editorState: state,
+            editorState: state
         };
 
         this.onEditorChange = (editorState) => {

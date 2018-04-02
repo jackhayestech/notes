@@ -18,3 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('notes/getmeta/{id}','NoteWriterController@getNotesMeta');
+Route::get('notes/getcontent/{id}','NoteWriterController@getNoteContent');
+
+Route::post('notes/updatenote/{id}','NoteWriterController@updateNote');

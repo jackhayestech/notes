@@ -48,7 +48,7 @@ export class Sidebar extends Component {
             var tagsText = "";
             var tag;
 
-            if (note.data.title.search(this.state.filter) != -1)
+            if (note.title.search(this.state.filter) != -1)
             {
                 match = 1;
             }
@@ -80,6 +80,7 @@ export class Sidebar extends Component {
                         note={note}
                         setSelectedNote={this.setSelectedNote.bind(this)}
                         tags={tagsText}
+                        key={note.id}
                         deleteNote={this.props.deleteNote}/>
                 );
             }

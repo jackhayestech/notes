@@ -4,7 +4,7 @@ import './App.css';
 import {Sidebar} from './components/sidebar/Sidebar'
 import {MainContent} from './components/maincontent/MainContent'
 import update from 'immutability-helper';
-
+import * as laravelCon from './libs/laravalconnector.js';
 
 class App extends Component
 {
@@ -16,46 +16,78 @@ class App extends Component
             sessionID : document.body.dataset.sessionId,
             newNoteID : 1,
             notes : [
-                // {id : 1, data:{
-                //     title : "Note 1",
-                //     content : "Note 1 content"
-                // }},
-                // {
-                //     id : 2,
-                //     title : "Note 2",
-                //     content : "Note 2 content"
-                // },
-                // {
-                //     id : 3,
-                //     title : "Note 3",
-                //     content : "Note 3 content"
-                // },
-                // {
-                //     id : 4,
-                //     title : "Note 4",
-                //     content : "Note 4 content"
-                // }
             ],
             selectedNote : {
                 id : 0,
-                data : {
-                    title : "",
-                    content : ""
-                },
+                title : "",
+                content : "",
                 tags : []
             },
             tags: [],
         }
     }
 
+    componentDidMount()
+    {
+        //Gets note data
+        fetch("http://localhost/api/notes/getmeta/" + 'ruIKlqKkkz9B1VPHukdK0yyM9sRSGPUBXVs2a8wB')
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.loadNotes(result)
+            },
+            (error) => {
+                console.log("Error somthing went wrong getting the note data from laravel");
+            }
+        )
+    }
+
+    //Loads the notes returned from the laravel database
+    loadNotes(data)
+    {
+        var newNotes = [];
+        var note = {};
+        data.forEach((notedata)=>{
+            note = {
+                id : notedata.id,
+                title : notedata.title,
+                tags : notedata.tags.split(",")
+            };
+            // Adds the note tags to the state
+            note.tags.forEach((tag)=>{
+                this.addTag(tag)
+            })
+
+            newNotes.push(note);
+        });
+
+        // Updates the new note id number
+        this.setState({newNoteID : note.id + 1})
+
+        this.setState({notes : newNotes});
+    }
+
     setSelectedNote(id)
     {
+        var tmpNote = [];
         this.state.notes.forEach((note) => {
             if (note.id == id)
             {
-                this.setState({selectedNote : note});
+                tmpNote = note;
             }
         });
+
+        fetch("http://localhost/api/notes/getcontent/" + id)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                tmpNote.content = result;
+                this.setState({selectedNote : tmpNote});
+            },
+            (error) => {
+                console.log("Error somthing went wrong getting the note content from laravel");
+            }
+        )
     }
 
     saveNote(argNote)
@@ -63,10 +95,22 @@ class App extends Component
         this.state.notes.forEach((note) => {
             if (note.id == argNote.id)
             {
-                note.data.title = argNote.data.title;
-                note.data.content = argNote.data.content;
+                note.title = argNote.title;
                 note.tags = argNote.tags;
             }
+        });
+
+        fetch("http://localhost/api/notes/updatenote/" + argNote.id, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+            body: JSON.stringify({
+                title: argNote.title,
+                tags: argNote.tags.toString(),
+                content: argNote.content
+            })
         });
 
         this.refs.sidebar.forceUpdate();
@@ -90,10 +134,7 @@ class App extends Component
         this.setState({
             selectedNote : {
                 id : 0,
-                data : {
-                    title : "",
-                    content : ""
-                },
+                title : "",
                 tags : []
             }
         });
@@ -103,10 +144,7 @@ class App extends Component
     {
         var newNote = {
             id : this.state.newNoteID,
-            data : {
-                title : "New Note Title",
-                content : ""
-            },
+            title : "New Note Title",
             tags : []
         };
 

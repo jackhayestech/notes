@@ -37,6 +37,11 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+// Remove on live
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application

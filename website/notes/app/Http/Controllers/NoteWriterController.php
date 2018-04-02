@@ -20,4 +20,24 @@ class NoteWriterController extends Controller
 
         echo json_encode($results);
     }
+
+    // Gets the content from a specific note
+    public function getNoteContent($note_id)
+    {
+        //Gets the note meta for the users notes
+        $results = DB::select('select content from notes where id = ?', [$note_id]);
+        echo json_encode($results[0]->content);
+    }
+
+    // Saves the changes made to the note
+    public function updateNote(Request $request,$note_id)
+    {
+        $title = $request->input('title');
+        $tags = $request->input('tags');
+        $content = $request->input('content');
+
+        DB::table('notes')
+            ->where('id',$note_id)
+            ->update(['title'=>$title,'tags'=>$tags,'content'=>$content]);
+    }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../../../../../styles/maincontent/editor/editorsettings/editorsettingselements/togglebutton.css';
+
 export class ToggleButton extends Component
 {
     constructor(props)
@@ -21,26 +23,15 @@ export class ToggleButton extends Component
 
     render()
     {
+        let className = 'lblStyleButton';
+
         if (this.state.active === true)
         {
-            var lblStyleButtonActive = {
-                backgroundColor: '#c3c3c3'
-            }
-        }
-
-        var lblStyleButton = {
-            margin: '10px 5px',
-            display: 'inline-block',
-            cursor: 'pointer',
-            width: '25px',
-            height: '25px',
-            textAlign: 'center',
-            lineHeight: '25px',
-            backgroundColor: '#e8e8e8'
+            className += ' lblStyleButtonActive';
         }
 
         return (
-            <div style={{...lblStyleButton, ...lblStyleButtonActive}} onMouseDown={this.toggle}>{this.props.text}</div>
+            <div className={className} onMouseDown={this.toggle}>{this.props.text}</div>
         );
     }
 }

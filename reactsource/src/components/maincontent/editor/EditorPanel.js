@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
+import {convertToRaw, RichUtils, EditorState} from 'draft-js';
+
 import {EditorSettings} from './editorsettings/EditorSettings'
 import {Tags} from './editorpanelelements/Tags'
 import {TitleInput} from './editorpanelelements/TitleInput'
-import {NoteEditor} from './editorpanelelements/NoteEditor'
-import update from 'immutability-helper';
-import {convertToRaw, RichUtils, EditorState} from 'draft-js';
+import {NoteEditor} from './editorpanelelements/NoteEditor';
+import '../../../styles/maincontent/editor/editorpanel.css';
 
 export class EditorPanel extends Component
 {
@@ -77,28 +79,16 @@ export class EditorPanel extends Component
 
     render()
     {
-        var divEditor = {
-            border: '1px solid',
-            padding: '10px',
-            flex: 1,
-        }
-
-        var divEditorContainer = {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-        }
-
         if (this.props.selectedNote.id != 0)
         {
             return (
-                <div style={divEditorContainer}>
+                <div id="divEditorContainer">
                     <EditorSettings
                         settings={this.state.editorSettings}
                         toggleEditorSettings={this.toggleEditorSettings.bind(this)}
                         setColour={this.setColour.bind(this)}/>
 
-                    <div style={divEditor}>
+                    <div id="divEditor">
                         <TitleInput title={this.state.noteTitle}
                             updateNoteTitle={this.updateNoteTitle.bind(this)}/>
 
@@ -116,7 +106,7 @@ export class EditorPanel extends Component
         }
         else
         {
-            return (<div></div>);
+            return (null);
         }
     }
 }

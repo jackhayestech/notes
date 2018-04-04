@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../../../../styles/maincontent/editor/editorpanelelements/titleinput.css';
+
 export class TitleInput extends Component
 {
     constructor(props)
@@ -22,12 +24,8 @@ export class TitleInput extends Component
 
     render()
     {
-        var inpTitle = {
-            marginBottom: '10px',
-        }
-
         return(
-            <input style={inpTitle}
+            <input id="inpTitle"
                 type="text"
                 value={this.state.noteTitle}
                 onChange={this.onTitleChange.bind(this)} />

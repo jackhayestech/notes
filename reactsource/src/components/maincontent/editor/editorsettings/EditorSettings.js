@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {ToggleButton} from './editorelements/ToggleButton'
-import {ColourPickerButton} from './editorelements/ColourPickerButton'
+
+import {ToggleButton} from './editorsettingselements/ToggleButton'
+import {ColourPickerButton} from './editorsettingselements/ColourPickerButton'
+import '../../../../styles/maincontent/editor/editorsettings/editorsettings.css';
 
 export class EditorSettings extends Component {
     constructor(props)
@@ -16,13 +18,8 @@ export class EditorSettings extends Component {
 
     render()
     {
-        var divEditorSettings = {
-            minHeight: '10%',
-            border: '1px solid',
-        }
-
         return (
-            <div style={divEditorSettings}>
+            <div id="divEditorSettings">
                 <ToggleButton text={"B"} setting={"BOLD"} toggleEditorSettings={this.toggleEditorSettings.bind(this)}/>
                 <ToggleButton text={"I"} setting={"ITALIC"} toggleEditorSettings={this.toggleEditorSettings.bind(this)}/>
                 <ToggleButton text={"UL"} setting={"UNDERLINE"} toggleEditorSettings={this.toggleEditorSettings.bind(this)}/>

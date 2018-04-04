@@ -1,0 +1,23 @@
+#divNewNote{
+    margin: 5px 0px;
+    padding: 7px 15px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    line-height: 25px;
+    background-color: #e8e8e8;
+}
+
+#divNewNote:hover {
+    background-color : #efecec;
+}
+
+#divTopBarContainer{
+    border: 1px solid;
+    padding: 10px;
+}
+
+#divFilterContainter{
+    display: inline-block;
+    margin-left: 25px
+}

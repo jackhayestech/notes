@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
+
 import {DeleteConfirmationMessage} from './DeleteConfirmationMessage'
+import '../../../styles/sidebar/elements/noteselector.css';
 
 export class NoteSelector extends Component
 {
@@ -39,59 +41,16 @@ export class NoteSelector extends Component
 
     render()
     {
-        var styles = {
-
-            divNoteSelector: {
-                margin : '10px 0px',
-                padding: '10px',
-                cursor: 'pointer',
-                border: '1px solid',
-                position: 'relative',
-
-                ':hover': {
-                    background : '#efecec',
-                },
-            },
-
-            pNoteTitle: {
-                fontSize: '18px',
-                fontWeight: '600',
-                marginTop: '0px',
-            },
-
-            pNoteContent: {
-                fontSize: '16px',
-                marginTop: '15px',
-                marginBottom: '0px'
-            },
-
-            divDeleteNote: {
-                position: 'absolute',
-                right: '5px',
-                top: '5px',
-                width: '15px',
-                height: '15px',
-                padding: '5px',
-                textAlign: 'center',
-                lineHeight: '15px',
-
-                ':hover': {
-                    background : '#d2d2d2',
-                },
-            },
-
-           
-        }
 
         return (
             <div key={this.props.note.id}
-            style={styles.divNoteSelector}
+            className="divNoteSelector"
             onMouseDown={this.select}>
-                <p style={styles.pNoteTitle}>
+                <p className="pNoteTitle">
                     {this.props.note.title}
                 </p>
                 <div
-                style={styles.divDeleteNote}
+                className="divDeleteNote"
                 onMouseDown={this.toggleDeleteNoteDisplay.bind(this)}>
                     x
                 </div>

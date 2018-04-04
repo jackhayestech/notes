@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Editor, EditorState, RichUtils, ContentState, createEditorState, convertFromRaw, convertToRaw} from 'draft-js';
+
 import 'draft-js/dist/Draft.css';
+import '../../../../styles/maincontent/editor/editorpanelelements/noteeditor.css';
 
 export class NoteEditor extends Component
 {
@@ -55,12 +57,8 @@ export class NoteEditor extends Component
 
     render()
     {
-        var divContainer = {
-            marginTop : '15px'
-        }
-
         return(
-            <div style={divContainer}>
+            <div id="divContainer">
                 <Editor
                     editorState={this.state.editorState}
                     handleKeyCommand={this.handleKeyCommand}

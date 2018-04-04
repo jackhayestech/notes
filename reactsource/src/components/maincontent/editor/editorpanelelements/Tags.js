@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
 
+import '../../../../styles/maincontent/editor/editorpanelelements/tags.css';
+
 export class Tags extends Component
 {
     constructor(props)

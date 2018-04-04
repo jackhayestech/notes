@@ -1,0 +1,11 @@
+#divEditor{
+    border: 1px solid;
+    padding: 10px;
+    flex: 1;
+}
+
+#divEditorContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

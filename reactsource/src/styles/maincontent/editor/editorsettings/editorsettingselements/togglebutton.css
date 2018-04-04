@@ -1,0 +1,14 @@
+.lblStyleButton{
+    margin: 10px 5px;
+    display: inline-block;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    background-color: #e8e8e8
+}
+
+.lblStyleButtonActive {
+    background-color: #c3c3c3;
+}

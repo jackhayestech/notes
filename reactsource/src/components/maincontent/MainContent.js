@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import {EditorPanel} from './editor/EditorPanel'
+import '../../styles/maincontent/maincontent.css';
 
 export class MainContent extends Component
 {
@@ -11,12 +13,8 @@ export class MainContent extends Component
 
     render()
     {
-        var divMainContent = {
-            flex : 1
-        }
-
         return (
-            <div style={divMainContent}>
+            <div id="divMainContent">
                 <EditorPanel
                     ref="editorPanel"
                     selectedNote={this.props.selectedNote}

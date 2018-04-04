@@ -1,0 +1,11 @@
+#divSideBar {
+    flex: 0 0 20%;
+    border: 1px solid;
+    margin-right: 10px;
+    padding: 10px;
+};
+
+#divSelectNoteContainer {
+    overflow-y: scroll;
+    height: 93%;
+}

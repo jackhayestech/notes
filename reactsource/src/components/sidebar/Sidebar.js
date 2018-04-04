@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import {NoteSelector} from './elements/NoteSelector'
 import {TopBar} from './elements/TopBar'
+import '../../styles/sidebar/sidebar.css';
 
 export class Sidebar extends Component {
 
@@ -31,18 +33,7 @@ export class Sidebar extends Component {
     render()
     {
         const rows = [];
-        var divSideBar = {
-            flex: '0 0 20%',
-            border: '1px solid',
-            marginRight: '10px',
-            padding: '10px',
-        };
-
-        var divSelectNoteContainer = {
-            overflowY: 'scroll',
-            height: '93%',
-        }
-
+        
         this.props.notes.forEach((note) => {
             var match = 0;
             var tagsText = "";
@@ -87,11 +78,12 @@ export class Sidebar extends Component {
         });
 
         return (
-            <div style={divSideBar}>
+            <div id="divSideBar">
                 <TopBar
                     newNote={this.newNote.bind(this)}
                     filterNotes={this.filterNotes.bind(this)}/>
-                <div style={divSelectNoteContainer}>
+                    
+                <div id="divSelectNoteContainer">
                     {rows}
                 </div>
             </div>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
+
 import logo from './logo.svg';
 import './App.css';
+import './styles/main.css?v=1';
 import {Sidebar} from './components/sidebar/Sidebar'
 import {MainContent} from './components/maincontent/MainContent'
-import update from 'immutability-helper';
-import * as laravelCon from './libs/laravalconnector.js';
 
 class App extends Component
 {
@@ -46,11 +47,13 @@ class App extends Component
     {
         var newNotes = [];
         var note = {};
+        var tmpTags = [];
         data.forEach((notedata)=>{
+            tmpTags = ((notedata.tags != "") ? notedata.tags.split(",") : [] ); 
             note = {
                 id : notedata.id,
                 title : notedata.title,
-                tags : notedata.tags.split(",")
+                tags : tmpTags
             };
             // Adds the note tags to the state
             note.tags.forEach((tag)=>{
@@ -177,13 +180,8 @@ class App extends Component
 
     render()
     {
-        var divPageWrapper = {
-            height: '100vh',
-            display: 'flex',
-        };
-
         return (
-            <div style={divPageWrapper}>
+            <div id="divPageWrapper">
                 <Sidebar
                     ref="sidebar"
                     setSelectedNote={this.setSelectedNote.bind(this)}
